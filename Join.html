@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join PowerGym</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="join-page">
+
+  <!-- Header/Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">Power<span>Gym</span></div>
+<div class="top-controls">
+  <button id="theme-toggle" aria-label="Toggle Theme" class="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </button>
+  <button id="menu-toggle" class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+</div>
+
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="join.html" class="active">Join</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Join PowerGym</h1>
+    <p>Fill in the form below to become a member and start your fitness journey today!</p>
+
+    <form class="join-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <select required>
+        <option value="">Select Plan</option>
+        <option value="basic">Basic - $20/month</option>
+        <option value="premium">Premium - $50/month</option>
+      </select>
+      <button type="submit" class="btn">Join Now</button>
+    </form>
+  </main>
+
+  <!-- Footer with social icons -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 PowerGym. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/mariam-ahmed-46b806250" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/mariam_79214?igsh=MXhxbHl1b2M3amtyMg==" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/share/1EeyornKss/" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Enhancements -->
+  <script>
+    // 1. Highlight current nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+
+    // 2. Scroll to top button
+    const scrollBtn = document.createElement('button');
+    scrollBtn.textContent = '↑';
+    scrollBtn.style.position = 'fixed';
+    scrollBtn.style.bottom = '20px';
+    scrollBtn.style.right = '20px';
+    scrollBtn.style.padding = '0.6rem 1rem';
+    scrollBtn.style.backgroundColor = '#ff6b00';
+    scrollBtn.style.color = '#fff';
+    scrollBtn.style.border = 'none';
+    scrollBtn.style.borderRadius = '50%';
+    scrollBtn.style.cursor = 'pointer';
+    scrollBtn.style.display = 'none';
+    scrollBtn.style.zIndex = '999';
+    document.body.appendChild(scrollBtn);
+
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 3. Animate elements on scroll
+    const revealElements = document.querySelectorAll('.feature, .trainer, .program-card, .price-card');
+    const revealOnScroll = () => {
+      revealElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', () => {
+      revealElements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(50px)';
+        el.style.transition = 'all 0.6s ease';
+      });
+      revealOnScroll();
+    });
+
+    // 4. Form submission alert (contact/join)
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('تم إرسال النموذج بنجاح! شكرًا لتواصلك معنا ❤️');
+        form.reset();
+      });
+    });
+  </script>
+  <script src="script.js" defer></script>
+</body>
+</html>
